@@ -1,0 +1,4 @@
+mainTempRead	KEYWORD2
+gyroTempRead	KEYWORD2
+mainTempCalibrate	KEYWORD2
+setMainGainOffset	KEYWORD2
