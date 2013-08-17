@@ -1,1 +1,3 @@
 This code will cycle through printing the temperature, session info and memory integrity test results to the serial monitor.
+There is a 'one strike and your out rule' so that if one of the sections fails it will go on to the next one upon the next startup. It logs what it has done so that it can do the next section upon a restart rather than doing the first one over and over.
+The session info code includes the number of startups and the current, maximum, minimum and average session durations. However, on the final code the current session duration will not be present as it is not necessary.
