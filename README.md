@@ -1,5 +1,4 @@
 BIS_Sprite_Code
-
 ===============
 
 This repository includes the code which will be put on the BIS KickSat sprite
