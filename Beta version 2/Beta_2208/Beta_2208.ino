@@ -1,16 +1,29 @@
 /*
+
     This code is the beta version of the BIS sprite code and may include some 
-    bugs, it doesn't include the transmission code. It will cycle through 
+    bugs, it includes the transmission code. It will cycle through 
     a)transmitting the temperature b)startup info including number of startups 
     and duration of the maximum, minimum and average sessions c)the results of 
     a memory integrity (radiation) test.
     
     When printing to serial monitor it will print as normal characters for easy reading
-    with headers. It will also print the character code as it will do in the final code.
-    This will look like a bunch of numbers, each number represents a character. The first
-    character is the header eg.82(R), 83(S) or 84(T). The next numbers are in sets of two
-    with the first increasing upto 255 at which point it increments the second, this is the 
-    hex representation of the integer being transmitted.
+    with headers. It will also print the hexadecimal code as it will do in the final code.
+    
+    The characters transmitted are as follows:
+      1. T - The header code for temperature information
+      2,3,4,5. - Hexadecimal representation of processor temperature in kelvin
+      6,7,8,9. - Hexadecimal representation of gyro temperature in kelvin
+      10. S - The header code for session information
+      11,12,13,14 - Hexadecimal representation of number of startups
+      15,16,17,18. - Hexadecimal representation of current duration in seconds
+      19,20,21,22. - Hexadecimal representation of minimum duration
+      23,24,25,26. - Hexadecimal representation of maximum duration
+      27,28,29,30. - Hexadecimal representation of average duration
+      31. R - The header code for the memory integrity test results
+      32,33,34,35. - Hexadecimal representation of number of currupted bits due to radiation
+      
+      This program takes approximately 45 seconds for transmission.
+      Final version may be reduced to 30 seconds.
     
 */
 
@@ -274,8 +287,6 @@ void loop()
     union_s[2] = message[5];
     union_s[3] = message[6];
     float Duration = union_f;
-        Serial.print("Previous time awake: ");
-        Serial.println(Duration);
     union_s[0] = message[7]; //Set minimum duration to message
     union_s[1] = message[8];
     union_s[2] = message[9];
@@ -348,14 +359,6 @@ void loop()
     
     InfoTrans[21] = 0;
     Serial.println(InfoTrans);
-    unsigned char c;
-    for (int i = 0; i<21; i++)
-    {
-      c = InfoTrans[i];
-      Serial.print(c); 
-      Serial.print("  ");
-    }
-    Serial.println(" ");
     Serial.println("Now transmitting");
     m_radio.transmit(InfoTrans, 21);
     Serial.println("Finished transmitting");
@@ -403,14 +406,6 @@ void Temperature() {  //Print the temperature sensor data from both sensors with
     TempTrans[8] = LowHex(lowByte(T_G)) ;
     TempTrans[9] = 0 ;
     Serial.println(TempTrans);
-    unsigned char c;
-    for (int i = 0; i<9; i++)
-    {
-      c = TempTrans[i];
-      Serial.print(c); 
-      Serial.print("  ");
-    }
-    Serial.println(" ");
     Serial.println("Now transmitting");
     m_radio.transmit(TempTrans, 9);
     Serial.println("Finished transmitting");
@@ -421,9 +416,9 @@ void MemoryTest() {
       
   errors = check_memory();
   
-      Serial.print("Memory Integrity Test: ");
-      Serial.print("errors: ");
-      Serial.println(errors);
+  Serial.print("Memory Integrity Test: ");
+  Serial.print("errors: ");
+  Serial.println(errors);
       
   char MemTrans[6];
   MemTrans[0] = 'R';
@@ -433,17 +428,9 @@ void MemoryTest() {
   MemTrans[4] = LowHex(lowByte(errors));
   MemTrans[5] = 0;
   Serial.println(MemTrans);
-  unsigned char c;
-  for (int i = 0; i<5; i++)
-    {
-      c = MemTrans[i];
-      Serial.print(c); 
-      Serial.print("  ");
-    }
-    Serial.println(" ");
-    Serial.println("Now transmitting");
-    m_radio.transmit(MemTrans, 5);
-    Serial.println("Finished transmitting");
+  Serial.println("Now transmitting");
+  m_radio.transmit(MemTrans, 5);
+  Serial.println("Finished transmitting");
 }
 char HighHex(byte b)
 {
