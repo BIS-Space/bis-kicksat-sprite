@@ -9,7 +9,7 @@ In order for the code to work the CCFlash, RadiationTest and TemperatureSensor d
 <h2>Code Structure</h2>
 Our code has 3 main sections: 
 <ol>
-    <li>Transmitting the temperature readings from the main processor and the gyroscope in Kelvin so we don't have to deal with minus signs. (Line 372)</li>
+    <li>Transmitting the temperature readings from the main processor and the gyroscope in Kelvin so we don't have to deal with minus signs. (See line 372 in the "Sprite Main" final code)</li>
     <li>Transmitting the session information. This includes the minimum, maximum and average session durations as well as the number of times the sprite has started up. (Line 260)</li>
     <li>Transmitting the results of a memory integrity test. Segment B of the flash memory is filled with 1's. The sprite will then transmit the number of bits which have been flipped to 0's, this can only be due to radiation. (Line 434)</li>
 </ol>
