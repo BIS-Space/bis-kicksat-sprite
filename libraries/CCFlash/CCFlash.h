@@ -18,7 +18,7 @@
 
   Provide access to the MSP430 flash memory controller. 
   All flash memory can be read, erased and written (except SEGMENT_A, the LOCK bits are not in the code, for a good reason).
-  Flash can only be erased per 512 byte segments (except the 4 special information segments, they are 64 bytes in size)
+  Flash can only be erased per 512 byte segments (except the 4 special information segments, they are 128 bytes in size)
   
   The same flash locations can be written multiple times with new values, but flash bits can only be reset (from 1 to 0) and cannot
   change to a 1 (you need to flash erase the whole segment)
