@@ -1,5 +1,5 @@
 /*
-  MspFlash.h - Read/Write flash memory library for MSP430 Energia 
+  CCFlash.h - Read/Write flash memory library for MSP430 Energia 
   Copyright (c) 2012 Peter Brier.  All right reserved.
 
   This library is free software; you can redistribute it and/or

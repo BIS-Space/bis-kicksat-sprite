@@ -1,5 +1,5 @@
 /*
-  flas_readwrite.h - Read/Write flash memory library example for MSP430 Energia 
+  flash_readwrite.h - Read/Write flash memory library example for MSP430 Energia 
   Copyright (c) 2012 Peter Brier.  All right reserved.
 
   This library is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 
   Provide access to the MSP430 flash memory controller. 
   All flash memory can be read, erased and written (except SEGMENT_A, the LOCK bits are not in the code, for a good reason).
-  Flash can only be erased per 512 byte segments (except the 4 special information segments, they are 64 bytes in size)
+  Flash can only be erased per 512 byte segments (except the 4 special information segments, they are 128 bytes in size)
   
   The same flash locations can be written multiple times with new values, but flash bits can only be reset (from 1 to 0) and cannot
   change to a 1 (you need to flash erase the whole segment)
@@ -34,7 +34,7 @@
   
   constants:
   ~~~~~~~~~~
-  SEGMENT_A   // pointer to 64 byte flash segments
+  SEGMENT_A   // pointer to 128 byte flash segments
   SEGMENT_B
   SEGMENT_C
   SEGMENT_D
@@ -85,7 +85,7 @@
 //#define flash SEGPTR(data)
 //
 
-//*** Option 2: use one of the 64 byte info segments, uncomment this line. Use SEGMENT_B, SEGMENT_C or SEGMENT_D (each 64 bytes, 192 bytes in total)
+//*** Option 2: use one of the 128 byte info segments, uncomment this line. Use SEGMENT_B, SEGMENT_C or SEGMENT_D (each 128 bytes, 384 bytes in total)
 #define flash SEGMENT_D
 //
 
