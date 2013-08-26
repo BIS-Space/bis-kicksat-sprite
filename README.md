@@ -2,7 +2,7 @@
 <h4>This repository includes the code which will be put on the BIS KickSat sprite.</h4>
 
 <h2>Dependecies</h2>
-In order for the code to work the CCFlash, RadiationTest and TemperatureSensor directories need to be put into this directory:
+In order for the code to work copy the contents of the `libraries` folder to:
 
     ~/EnergiaKickSatWindows/hardware/msp430/libraries
 
