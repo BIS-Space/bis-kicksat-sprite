@@ -1,5 +1,9 @@
 <h1>Overview</h1>
-<h4>This repository includes the code which will be put on the BIS KickSat sprite.</h4>
+*This repository includes the code which will be put on the BIS KickSat sprite*
+
+`SpriteMain` is the Energia project that should be uploaded to the Sprite.
+
+`libraries` contains several other Energia projects that `SpriteMain` relies on.
 
 <h2>Dependecies</h2>
 In order for the code to work copy the contents of the `libraries` folder to:
